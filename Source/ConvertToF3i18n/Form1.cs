@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -18,9 +19,17 @@ namespace ConvertToF3i18n {
 			txtStrings.Text = "";
 			string[] lines = strings.Split(new string[] { "\r\n", "\n" }, StringSplitOptions.None);
 
+			var count = 0; // Used in case of dupe
 			foreach (var line in lines) {
+				if (line.Trim() == "") continue;
+				if (line.StartsWith(";")) {
+					txtStrings.Text += line + "\r\n";
+					continue;
+				}
 				var clean = MakeVariableName(line);
+				if (txtStrings.Text.Contains(clean + "=")) clean = clean + count;
 				txtStrings.Text += clean + @"=" + line.Replace('=',':') + "\r\n";
+				count++;
 			}
 
 		}
@@ -28,6 +37,7 @@ namespace ConvertToF3i18n {
 		private static string MakeVariableName(string line) {
 			var clean = Regex.Replace(line, @"[^\w]", "_"); 
 			clean = clean.ToLower();
+			if (!Char.IsLetter(clean.FirstOrDefault())) clean = "v_" + clean;
 			return clean;
 		}
 
@@ -38,8 +48,7 @@ namespace ConvertToF3i18n {
 
 			string[] stringlines = strings.Split(new string[] { "\r\n", "\n" }, StringSplitOptions.None);
 			var replaceArray = new ArrayList();
-			foreach (var line in stringlines) {
-				if (line.StartsWith(";")) continue;
+			foreach (var line in stringlines) {		
 				string[] lineSplitter = line.Split('=');
 				if (lineSplitter.Length <= 1) continue;
 
