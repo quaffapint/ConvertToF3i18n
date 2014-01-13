@@ -102,5 +102,18 @@ namespace ConvertToF3i18n {
 
 		}
 
+		private void btClearStrings_Click(object sender, EventArgs e) {
+			txtStrings.Text = "";
+		}
+
+		private void btClearScript_Click(object sender, EventArgs e) {
+			txtScript.Text = "";
+		}
+
+		private void Form1_Load(object sender, EventArgs e) {
+			txtStrings.SelectionStart = txtStrings.Text.Length;
+			ActiveControl = txtStrings;
+		}
+
 	}
 }

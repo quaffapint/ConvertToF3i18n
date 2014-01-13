@@ -31,6 +31,8 @@
 			this.label2 = new System.Windows.Forms.Label();
 			this.btReplace = new System.Windows.Forms.Button();
 			this.btAdd = new System.Windows.Forms.Button();
+			this.btClearStrings = new System.Windows.Forms.Button();
+			this.btClearScript = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// btConvert
@@ -112,11 +114,34 @@
 			this.btAdd.UseVisualStyleBackColor = true;
 			this.btAdd.Click += new System.EventHandler(this.btAdd_Click);
 			// 
+			// btClearStrings
+			// 
+			this.btClearStrings.Location = new System.Drawing.Point(26, 279);
+			this.btClearStrings.Name = "btClearStrings";
+			this.btClearStrings.Size = new System.Drawing.Size(75, 23);
+			this.btClearStrings.TabIndex = 8;
+			this.btClearStrings.Text = "Clear";
+			this.btClearStrings.UseVisualStyleBackColor = true;
+			this.btClearStrings.Click += new System.EventHandler(this.btClearStrings_Click);
+			// 
+			// btClearScript
+			// 
+			this.btClearScript.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.btClearScript.Location = new System.Drawing.Point(31, 579);
+			this.btClearScript.Name = "btClearScript";
+			this.btClearScript.Size = new System.Drawing.Size(75, 23);
+			this.btClearScript.TabIndex = 9;
+			this.btClearScript.Text = "Clear";
+			this.btClearScript.UseVisualStyleBackColor = true;
+			this.btClearScript.Click += new System.EventHandler(this.btClearScript_Click);
+			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(664, 609);
+			this.Controls.Add(this.btClearScript);
+			this.Controls.Add(this.btClearStrings);
 			this.Controls.Add(this.btAdd);
 			this.Controls.Add(this.txtScript);
 			this.Controls.Add(this.label2);
@@ -128,6 +153,7 @@
 			this.Margin = new System.Windows.Forms.Padding(2);
 			this.Name = "Form1";
 			this.Text = "Convert to F3 i18n";
+			this.Load += new System.EventHandler(this.Form1_Load);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -142,6 +168,8 @@
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Button btReplace;
 		private System.Windows.Forms.Button btAdd;
+		private System.Windows.Forms.Button btClearStrings;
+		private System.Windows.Forms.Button btClearScript;
 	}
 }
 
