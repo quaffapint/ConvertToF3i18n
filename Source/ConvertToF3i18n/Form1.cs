@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -18,16 +19,20 @@ namespace ConvertToF3i18n {
 			var strings = txtStrings.Text.Trim();
 			txtStrings.Text = "";
 			string[] lines = strings.Split(new string[] { "\r\n", "\n" }, StringSplitOptions.None);
+			var list = new List<string>(lines);
+			var sortedByLength = from s in list
+						 orderby s.Length descending 
+						 select s;
 
 			var count = 0; // Used in case of dupe
-			foreach (var line in lines) {
+			foreach (var line in sortedByLength) {
 				if (line.Trim() == "") continue;
 				if (line.StartsWith(";")) {
 					txtStrings.Text += line + "\r\n";
 					continue;
 				}
 				var clean = MakeVariableName(line);
-				if (txtStrings.Text.Contains(clean + "=")) clean = clean + count;
+				if (txtStrings.Text.Contains("\n" + clean + "=")) clean = clean + count;
 				txtStrings.Text += clean + @"=" + line.Replace('=',':') + "\r\n";
 				count++;
 			}
