@@ -41,8 +41,8 @@ namespace ConvertToF3i18n {
 
 		private static string MakeVariableName(string line) {
 			var clean = Regex.Replace(line, @"[^\w]", "_"); 
-			clean = clean.ToLower();
-			if (!Char.IsLetter(clean.FirstOrDefault())) clean = "v_" + clean;
+			clean = "lang_" + clean.ToLower();
+			//if (!Char.IsLetter(clean.FirstOrDefault())) clean = "v_" + clean;
 			return clean;
 		}
 
